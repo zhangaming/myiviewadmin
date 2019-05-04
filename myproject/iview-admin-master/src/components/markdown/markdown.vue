@@ -1,18 +1,45 @@
  <template>
-  <div class="markdown-wrapper">
-    <div class="plugins-tips">
-      mavonEditor：基于Vue的markdown编辑器。 访问地址：
-      <a href="https://github.com/hinesboy/mavonEditor"
-         target="_blank">mavonEditor</a>
+  <div>
+    <Row class="one">
+      <Col :span="12">
+      <i-select :model.sync="type"
+                style="width:200px"
+                @on-change="selectChange">
+        <Option-group label="测试">
+          <i-option v-for="(item,index) in testList"
+                    :value="item.value"
+                    :key="index">{{ item.label }}</i-option>
+        </Option-group>
+        <Option-group label="vue">
+          <i-option v-for="(item,index) in vueList"
+                    :value="item.value"
+                    :key="index">{{ item.label }}</i-option>
+        </Option-group>
+      </i-select>
+
+      </Col>
+      <Col :span="12">
+      <Date-picker type="date"
+                   placeholder="选择日期"
+                   style="width: 200px"
+                   @on-change="changeDate"></Date-picker>
+      </Col>
+    </Row>
+    <div class="markdown-wrapper">
+      <div class="plugins-tips">
+        mavonEditor：基于Vue的markdown编辑器。 访问地址：
+        <a href="https://github.com/hinesboy/mavonEditor"
+           target="_blank">mavonEditor</a>
+      </div>
+      <mavon-editor v-model="content"
+                    ref="md"
+                    @imgAdd="$imgAdd"
+                    @change="change"
+                    style="min-height: 600px" />
+      <Button type="primary"
+              @click="submit">提交</Button>
+      <!-- <el-button class="editor-btn" type="primary" ></el-button> -->
     </div>
-    <mavon-editor v-model="content"
-                  ref="md"
-                  @imgAdd="$imgAdd"
-                  @change="change"
-                  style="min-height: 600px" />
-    <Button type="primary"
-            @click="submit">提交</Button>
-    <!-- <el-button class="editor-btn" type="primary" ></el-button> -->
   </div>
 </template>
 
@@ -25,7 +52,21 @@ export default {
     return {
       content: '',
       html: '',
-      configs: {}
+      configs: {},
+      testList: [
+        {
+          value: 'test',
+          label: '测试'
+        }
+      ],
+      vueList: [
+        {
+          value: 'vuex',
+          label: 'vuex'
+        }
+      ],
+      type: '',
+      date: ''
     }
   },
   components: {
@@ -50,10 +91,19 @@ export default {
       // render 为 markdown 解析后的结果
       this.html = render
     },
+    changeDate (value) {
+      this.date = value
+    },
+    selectChange (value) {
+      this.type = value
+    },
     submit () {
       console.log(this.content)
       console.log(this.html)
-      this.$Message.success('提交成功！')
+      console.log(this.type)
+      console.log(this.date)
+      this.$Message.info('this.type,' + this.type + '|this.date,' + this.date)
+      // this.$Message.success('提交成功！')
     }
   }
 }
@@ -61,6 +111,9 @@ export default {
 <style scoped>
 .editor-btn {
   margin-top: 20px;
+}
+.one {
+  z-index: 1501;
 }
 </style>
 <style lang="less">
