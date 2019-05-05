@@ -21,8 +21,12 @@
                     :value="item.value"
                     :key="index">{{ item.label }}</i-option>
         </Option-group>
+        <Option-group label="js">
+          <i-option v-for="(item,index) in jsList"
+                    :value="item.value"
+                    :key="index">{{ item.label }}</i-option>
+        </Option-group>
       </i-select>
-
       </Col>
       <Col :span="8">
       <Date-picker type="date"
@@ -51,7 +55,10 @@
 
 <script>
 import { mavonEditor } from 'mavon-editor'
+import axios from 'axios'
+import qs from 'qs'
 import 'mavon-editor/dist/css/index.css'
+// import { url } from 'inspector'
 export default {
   name: 'page_2_1',
   data () {
@@ -72,6 +79,12 @@ export default {
           label: 'vuex'
         }
       ],
+      jsList: [
+        {
+          value: 'js',
+          label: 'js'
+        }
+      ],
       type: '',
       date: '',
       read: 0
@@ -86,14 +99,14 @@ export default {
       var formdata = new FormData()
       formdata.append('file', $file)
       // 这里没有服务器供大家尝试，可将下面上传接口替换为你自己的服务器接口
-      this.$axios({
-        url: '/common/upload',
-        method: 'post',
-        data: formdata,
-        headers: { 'Content-Type': 'multipart/form-data' }
-      }).then(url => {
-        this.$refs.md.$img2Url(pos, url)
-      })
+      // this.$axios({
+      //   url: '/common/upload',
+      //   method: 'post',
+      //   data: formdata,
+      //   headers: { 'Content-Type': 'multipart/form-data' }
+      // }).then(url => {
+      //   this.$refs.md.$img2Url(pos, url)
+      // })
     },
     change (value, render) {
       // render 为 markdown 解析后的结果
@@ -106,18 +119,27 @@ export default {
       this.type = value
     },
     submit () {
-      console.log(this.content)
-      console.log(this.html)
-      console.log(this.type)
-      console.log(this.date)
-      console.log('read,', this.read)
-      console.log('title,', this.title)
       if (!this.html || !this.content || !this.type || !this.date || !this.title) {
         this.$Message.info('请输入完整信息')
         return
       }
-      this.$Message.info('this.type,' + this.type + '|this.date,' + this.date)
-      // this.$Message.success('提交成功！')
+      const LOCALURL = 'http://localhost:3000/'
+      let urls = LOCALURL + 'article/submitArticle'
+      let data = qs.stringify({
+        type: this.type,
+        createTime: this.date,
+        html: this.html,
+        content: this.content,
+        title: this.title,
+        read: this.read,
+        updateTime: this.date
+      })
+      console.log('data', data)
+      axios.post(urls, data).then(res => {
+        this.$Message.success(res.data.message)
+      }).catch(err => {
+        console.log('err', err)
+      })
     }
   }
 }
