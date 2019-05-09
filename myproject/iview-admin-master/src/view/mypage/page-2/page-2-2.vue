@@ -18,17 +18,101 @@
       <div class="html_show"
            v-html="articleHtml"></div>
     </Modal>
+    <Modal v-model="editModal"
+           title="修改文章"
+           :width="1200"
+           @on-ok="ok1"
+           @on-cancel="cancel1">
+      <div class="html_show">
+        <Row class="one">
+          <Col :span="8">
+          <i-input v-model="title"
+                   type="text"
+                   style="width:200px"
+                   placeholder="请输入题目"></i-input>
+          </Col>
+          <Col :span="8">
+          <i-select :model.sync="type"
+                    style="width:200px"
+                    @on-change="selectChange">
+            <Option-group label="测试">
+              <i-option v-for="(item,index) in testList"
+                        :value="item.value"
+                        :key="index">{{ item.label }}</i-option>
+            </Option-group>
+            <Option-group label="vue">
+              <i-option v-for="(item,index) in vueList"
+                        :value="item.value"
+                        :key="index">{{ item.label }}</i-option>
+            </Option-group>
+            <Option-group label="js">
+              <i-option v-for="(item,index) in jsList"
+                        :value="item.value"
+                        :key="index">{{ item.label }}</i-option>
+            </Option-group>
+          </i-select>
+          </Col>
+          <Col :span="8">
+          <Date-picker type="date"
+                       placeholder="选择日期"
+                       style="width: 200px"
+                       @on-change="changeDate"></Date-picker>
+          </Col>
+        </Row>
+        <div class="markdown-wrapper">
+          <div class="plugins-tips">
+            mavonEditor：基于Vue的markdown编辑器。 访问地址：
+            <a href="https://github.com/hinesboy/mavonEditor"
+               target="_blank">mavonEditor</a>
+          </div>
+          <mavon-editor v-model="content"
+                        ref="md"
+                        @imgAdd="$imgAdd"
+                        @change="change"
+                        style="min-height: 600px" />
+        </div>
+      </div>
+    </Modal>
+
   </div>
 </template>
 
 <script>
+import { mavonEditor } from 'mavon-editor'
 import axios from 'axios'
 import qs from 'qs'
+import 'mavon-editor/dist/css/index.css'
 export default {
   name: 'page_2_2',
   data () {
     return {
+      editId: '',
+      title: '',
+      content: '',
+      html: '',
+      configs: {},
+      testList: [
+        {
+          value: 'test',
+          label: '测试'
+        }
+      ],
+      vueList: [
+        {
+          value: 'vuex',
+          label: 'vuex'
+        }
+      ],
+      jsList: [
+        {
+          value: 'js',
+          label: 'js'
+        }
+      ],
+      type: '',
+      date: '',
       showModal: false,
+      editModal: false,
       articleHtml: '',
       titleModal: '',
       columns1: [
@@ -53,7 +137,7 @@ export default {
         {
           title: 'Action',
           key: 'action',
-          width: 150,
+          width: 200,
           align: 'center',
           render: (h, params) => {
             return h('div', [
@@ -74,6 +158,20 @@ export default {
                   }
                 }
               }, '显示')]),
+              h('Button', {
+                props: {
+                  type: 'success',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.edit(params.row)
+                  }
+                }
+              }, '编辑'),
               h('Button', {
                 props: {
                   type: 'error',
@@ -105,7 +203,9 @@ export default {
     }
   },
 
-  components: {},
+  components: {
+    mavonEditor
+  },
 
   computed: {},
 
@@ -115,12 +215,55 @@ export default {
   methods: {
     ok () {
       this.$Message.info('点击了确定')
+      this.getList()
     },
     cancel () {
       this.$Message.info('点击了取消')
+      this.getList()
+    },
+    ok1 () {
+      console.log(this.type, this.date, this.title)
+      if (!this.html || !this.content || !this.type || !this.date || !this.title || !this.editId) {
+        this.$Message.info('请输入完整信息')
+        return
+      }
+      const LOCALURL = 'http://localhost:3000/'
+      let url = LOCALURL + 'article/editArticle'
+      let data = qs.stringify({
+        id: this.editId,
+        type: this.type,
+        html: this.html,
+        content: this.content,
+        title: this.title,
+        updateTime: this.date
+      })
+      // console.log('data', data)
+      axios.post(url, data).then(res => {
+        this.$Notice.success({
+          title: res.data.message
+        })
+        this.getList()
+      }).catch(err => {
+        console.log('err', err)
+      })
+    },
+    cancel1 () {
+      this.$Message.info('点击了取消')
     },
     show (params) {
-      console.log(params)
+      let data = qs.stringify({
+        id: params._id,
+        isadd: false
+      })
+      const LOCALURL = 'http://localhost:3000/'
+      let url = LOCALURL + 'article/getArticleView'
+      axios.post(url, data).then(res => {
+        this.articleHtml = res.data.data.html
+        this.titleModal = res.data.data.title
+        this.showModal = true
+      })
+    },
+    edit (params) {
       let data = qs.stringify({
         id: params._id,
         read: params.read,
@@ -130,13 +273,26 @@ export default {
       let url = LOCALURL + 'article/getArticleView'
       axios.post(url, data).then(res => {
         console.log(res.data.data)
-        this.articleHtml = res.data.data.html
-        this.titleModal = res.data.data.title
-        this.showModal = true
+        this.content = res.data.data.content
+        this.html = res.data.data.html
+        this.type = res.data.data.type
+        this.title = res.data.data.title
+        this.editId = res.data.data._id
+        this.editModal = true
       })
     },
     remove (params) {
       console.log(params)
+      let data = qs.stringify({
+        id: params._id
+      })
+      const LOCALURL = 'http://localhost:3000/'
+      let url = LOCALURL + 'article/removeArticle'
+      axios.post(url, data).then(res => {
+        this.$Notice.success({
+          title: res.data.message
+        })
+      })
     },
     async getList () {
       let data = qs.stringify({
@@ -151,12 +307,35 @@ export default {
         // let pageSize = res.data.data.pageSize
         this.data1 = res.data.data.rows
       })
+    },
+    // 将图片上传到服务器，返回地址替换到md中
+    $imgAdd (pos, $file) {
+      var formdata = new FormData()
+      formdata.append('file', $file)
+      // 这里没有服务器供大家尝试，可将下面上传接口替换为你自己的服务器接口
+      // this.$axios({
+      //   url: '/common/upload',
+      //   method: 'post',
+      //   data: formdata,
+      //   headers: { 'Content-Type': 'multipart/form-data' }
+      // }).then(url => {
+      //   this.$refs.md.$img2Url(pos, url)
+      // })
+    },
+    change (value, render) {
+      this.html = render
+    },
+    changeDate (value) {
+      this.date = value
+    },
+    selectChange (value) {
+      this.type = value
     }
   }
 }
 
 </script>
-<style lang='less' scoped>
+<style>
 pre {
   padding: 16px;
   overflow: auto;
@@ -165,6 +344,12 @@ pre {
   background-color: #f6f8fa;
   border-radius: 3px;
 }
+.ivu-select-dropdown {
+  z-index: 10000;
+}
+</style>
+
+<style lang='less' scoped>
 .html_show {
   padding: 0 10px;
 }

@@ -523,6 +523,15 @@ export default [{
       title: 'page-3'
     },
     component: () => import('@/view/mypage/page-3.vue')
+  },
+  {
+    path: 'page_4',
+    name: 'page_4',
+    meta: {
+      icon: 'md-funnel',
+      title: 'page-4'
+    },
+    component: () => import('@/view/mypage/page-4.vue')
   }
   ]
 }
