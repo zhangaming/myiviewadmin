@@ -28,6 +28,7 @@ export default {
   page_2: 'page-2',
   page_3: 'page-3',
   page_4: 'page-4',
+  page_5: 'page-5',
   page_2_1: 'page-2-1',
   page_2_2: 'page-2-2',
   excel: 'Excel',
