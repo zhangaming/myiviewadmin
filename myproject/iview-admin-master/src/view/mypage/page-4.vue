@@ -66,6 +66,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import url from '@/api/myapi.js'
 export default {
   name: 'page_4',
   data () {
@@ -142,28 +143,21 @@ export default {
   },
   methods: {
     submitImg () {
-      console.log('typeModel', this.typeModel)
-      console.log('imgurl', this.imgurl)
       let data = qs.stringify({
         type: this.typeModel,
         img: this.imgurl
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'Imgs/submitImg'
-      axios.post(url, data).then(res => {
+      axios.post(url.submitImg, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
       })
     },
     remove (params) {
-      console.log(params)
       let data = qs.stringify({
         id: params._id
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'Imgs/removeImg'
-      axios.post(url, data).then(res => {
+      axios.post(url.removeImg, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -176,10 +170,7 @@ export default {
         page: this.current,
         pageNum: this.pageSize
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'Imgs/getImg'
-      axios.post(url, data).then(res => {
-        console.log(res)
+      axios.post(url.getImg, data).then(res => {
         this.data = res.data.data.rows
         this.total = res.data.data.count
       })

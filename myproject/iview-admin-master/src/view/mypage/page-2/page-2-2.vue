@@ -82,6 +82,7 @@ import { mavonEditor } from 'mavon-editor'
 import axios from 'axios'
 import qs from 'qs'
 import 'mavon-editor/dist/css/index.css'
+import url from '@/api/myapi.js'
 export default {
   name: 'page_2_2',
   data () {
@@ -227,8 +228,6 @@ export default {
         this.$Message.info('请输入完整信息')
         return
       }
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'article/editArticle'
       let data = qs.stringify({
         id: this.editId,
         type: this.type,
@@ -238,7 +237,7 @@ export default {
         updateTime: this.date
       })
       // console.log('data', data)
-      axios.post(url, data).then(res => {
+      axios.post(url.editArticle, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -255,9 +254,7 @@ export default {
         id: params._id,
         isadd: false
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'article/getArticleView'
-      axios.post(url, data).then(res => {
+      axios.post(url.getArticleView, data).then(res => {
         this.articleHtml = res.data.data.html
         this.titleModal = res.data.data.title
         this.showModal = true
@@ -269,9 +266,7 @@ export default {
         read: params.read,
         isadd: false
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'article/getArticleView'
-      axios.post(url, data).then(res => {
+      axios.post(url.getArticleView, data).then(res => {
         console.log(res.data.data)
         this.content = res.data.data.content
         this.html = res.data.data.html
@@ -286,9 +281,7 @@ export default {
       let data = qs.stringify({
         id: params._id
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'article/removeArticle'
-      axios.post(url, data).then(res => {
+      axios.post(url.removeArticle, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -299,9 +292,7 @@ export default {
         page: this.current + 1,
         pageNum: this.pageSize
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'article/getArticleList'
-      axios.post(url, data).then(res => {
+      axios.post(url.getArticleList, data).then(res => {
         // let count = res.data.data.count
         // let current = res.data.data.current
         // let pageSize = res.data.data.pageSize
@@ -312,15 +303,6 @@ export default {
     $imgAdd (pos, $file) {
       var formdata = new FormData()
       formdata.append('file', $file)
-      // 这里没有服务器供大家尝试，可将下面上传接口替换为你自己的服务器接口
-      // this.$axios({
-      //   url: '/common/upload',
-      //   method: 'post',
-      //   data: formdata,
-      //   headers: { 'Content-Type': 'multipart/form-data' }
-      // }).then(url => {
-      //   this.$refs.md.$img2Url(pos, url)
-      // })
     },
     change (value, render) {
       this.html = render

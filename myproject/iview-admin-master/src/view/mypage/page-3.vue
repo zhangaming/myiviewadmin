@@ -48,6 +48,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import url from '@/api/myapi.js'
 export default {
   name: 'page_3',
   data () {
@@ -125,9 +126,7 @@ export default {
       let data = qs.stringify({
         id: params._id
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'liuyan/removeMessage'
-      axios.post(url, data).then(res => {
+      axios.post(url.removeMessage, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -154,9 +153,7 @@ export default {
         pageNum: this.pageSize,
         type: this.typeModel
       })
-      const LOCALURL = 'http://localhost:3000/'
-      let url = LOCALURL + 'liuyan/getMessage'
-      axios.post(url, data).then(res => {
+      axios.post(url.getMessage, data).then(res => {
         this.total = res.data.data.count
         this.data1 = res.data.data.rows
       })

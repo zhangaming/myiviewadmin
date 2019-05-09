@@ -59,6 +59,7 @@ import axios from 'axios'
 import qs from 'qs'
 import 'mavon-editor/dist/css/index.css'
 // import { url } from 'inspector'
+import url from '@/api/myapi.js'
 export default {
   name: 'page_2_1',
   data () {
@@ -98,15 +99,6 @@ export default {
     $imgAdd (pos, $file) {
       var formdata = new FormData()
       formdata.append('file', $file)
-      // 这里没有服务器供大家尝试，可将下面上传接口替换为你自己的服务器接口
-      // this.$axios({
-      //   url: '/common/upload',
-      //   method: 'post',
-      //   data: formdata,
-      //   headers: { 'Content-Type': 'multipart/form-data' }
-      // }).then(url => {
-      //   this.$refs.md.$img2Url(pos, url)
-      // })
     },
     change (value, render) {
       // render 为 markdown 解析后的结果
@@ -123,8 +115,6 @@ export default {
         this.$Message.info('请输入完整信息')
         return
       }
-      const LOCALURL = 'http://localhost:3000/'
-      let urls = LOCALURL + 'article/submitArticle'
       let data = qs.stringify({
         type: this.type,
         createTime: this.date,
@@ -134,8 +124,7 @@ export default {
         read: this.read,
         updateTime: this.date
       })
-      console.log('data', data)
-      axios.post(urls, data).then(res => {
+      axios.post(url.submitArticle, data).then(res => {
         this.$Message.success(res.data.message)
       }).catch(err => {
         console.log('err', err)
