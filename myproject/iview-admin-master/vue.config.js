@@ -12,9 +12,9 @@ const resolve = dir => {
 // 例如：https://www.foobar.com/my-app/
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
-const BASE_URL = process.env.NODE_ENV === 'production' ?
-  '/' :
-  '/'
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? ''
+  : '/'
 
 module.exports = {
   // Project deployment base
@@ -35,9 +35,19 @@ module.exports = {
       .set('_c', resolve('src/components'))
   },
   // 设为false打包时不生成.map文件
-  productionSourceMap: false
+  productionSourceMap: false,
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
-  // devServer: {
-  //   proxy: 'localhost:3000'
-  // }
+  devServer: {
+    port: 8010, // 代理端口
+    open: false, // 项目启动时是否自动打开浏览器，我这里设置为false,不打开，true表示打开
+    proxy: {
+      '/api': { // 代理api
+        target: 'http://192.168.3.196:3000', // 服务器api地址
+        changeOrigin: true, // 是否跨域
+        pathRewrite: { // 重写路径
+          '^/api': ''
+        }
+      }
+    }
+  }
 }

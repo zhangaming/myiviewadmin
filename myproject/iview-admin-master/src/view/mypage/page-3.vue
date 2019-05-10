@@ -115,6 +115,7 @@ export default {
 
   created () {
     this.getmsg()
+    this.getmsg2()
   },
   mounted () {
 
@@ -156,6 +157,16 @@ export default {
       axios.post(url.getMessage, data).then(res => {
         this.total = res.data.data.count
         this.data1 = res.data.data.rows
+      })
+    },
+    getmsg2 () {
+      let data = qs.stringify({
+        page: this.current,
+        pageNum: this.pageSize,
+        type: this.typeModel
+      })
+      axios.post('/api/liuyan/getMessage', data).then(res => {
+        console.log('res2', res)
       })
     }
 

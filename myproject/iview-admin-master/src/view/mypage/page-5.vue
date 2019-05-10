@@ -22,7 +22,7 @@
         <Col :span='24'
              style="margin-top:5px">
         <Tabs active-key="key1">
-          <Tab-pane label="标签一"
+          <Tab-pane label="照片墙"
                     key="key1">
             <div class="img-row">
               <Row>
