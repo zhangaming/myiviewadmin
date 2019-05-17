@@ -285,6 +285,7 @@ export default {
         this.$Notice.success({
           title: res.data.message
         })
+        this.getList()
       })
     },
     async getList () {
