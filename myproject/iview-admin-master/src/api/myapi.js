@@ -14,7 +14,7 @@ const URL = {
   submitSkill: LOCALURL + 'submitSkill', // 录入技能
   getSkill: LOCALURL + 'getSkill', // 获取技能信息
   removeSkill: LOCALURL + 'removeSkill', // 删除技能
-  ip: LOCALURL + 'ip' // 获取IP
+  ipList: LOCALURL + 'ipList' // 获取IP
 }
 
 module.exports = URL

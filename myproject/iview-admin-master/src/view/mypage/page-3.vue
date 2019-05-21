@@ -103,6 +103,9 @@ export default {
         {
           value: 'test',
           label: '测试'
+        }, {
+          value: 'blog',
+          label: '博客'
         }
       ],
       data1: []
