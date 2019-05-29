@@ -18,7 +18,7 @@ export default {
    */
   baseUrl: {
     dev: 'https://www.easy-mock.com/mock/5c9432ce4b307f59498dbea9/iview',
-    pro: 'https://produce.com'
+    pro: 'https://www.easy-mock.com/mock/5c9432ce4b307f59498dbea9/iview'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home

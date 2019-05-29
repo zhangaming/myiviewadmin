@@ -1,4 +1,5 @@
-const LOCALURL = 'http://localhost:3000/'
+// const LOCALURL = 'http://localhost:3000/'
+const LOCALURL = 'http://182.61.48.129:3000/'
 const URL = {
   submitImg: LOCALURL + 'submitImg', // 提交照片墙图片路径
   removeImg: LOCALURL + 'removeImg', // 删除图片

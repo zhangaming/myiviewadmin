@@ -3,7 +3,12 @@
   <div>
     <Card>
       <Row>
-        <Col>
+        <Col :span="24"
+             style="margin-bottom:5px">
+        <Button type="primary"
+                @click="getList">刷新</Button>
+        </Col>
+        <Col :span="24">
         <i-table stripe
                  :columns="columns1"
                  :data="data1"></i-table>

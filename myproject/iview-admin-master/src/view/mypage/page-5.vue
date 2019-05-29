@@ -48,6 +48,7 @@
         <Page :total="total"
               show-elevator
               :page-size-opts="pageArray"
+              :page-size="pageSize"
               @on-change="changePage"
               @on-page-size-change="changeSize"
               show-sizer></Page>

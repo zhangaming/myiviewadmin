@@ -1,13 +1,13 @@
  <template>
   <div>
     <Row class="one">
-      <Col :span="8">
+      <Col :span="6">
       <i-input v-model="title"
                type="text"
                style="width:200px"
                placeholder="请输入题目"></i-input>
       </Col>
-      <Col :span="8">
+      <Col :span="6">
       <i-select :model.sync="type"
                 style="width:200px"
                 @on-change="selectChange">
@@ -28,11 +28,15 @@
         </Option-group>
       </i-select>
       </Col>
-      <Col :span="8">
+      <Col :span="6">
       <Date-picker type="date"
                    placeholder="选择日期"
                    style="width: 200px"
                    @on-change="changeDate"></Date-picker>
+      </Col>
+      <Col :span="6">
+      <Button type="primary"
+              @click="submit">提交</Button>
       </Col>
     </Row>
     <div class="markdown-wrapper">
@@ -46,8 +50,6 @@
                     @imgAdd="$imgAdd"
                     @change="change"
                     style="min-height: 600px" />
-      <Button type="primary"
-              @click="submit">提交</Button>
       <!-- <el-button class="editor-btn" type="primary" ></el-button> -->
     </div>
   </div>

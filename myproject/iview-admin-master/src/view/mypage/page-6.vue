@@ -55,7 +55,7 @@ export default {
       typeModel: '',
       columns1: [
         {
-          title: '昵称',
+          title: '技能',
           key: 'skill'
         },
         {

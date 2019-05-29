@@ -101,8 +101,8 @@ export default {
           label: '全部'
         },
         {
-          value: 'test',
-          label: '测试'
+          value: 'rusume',
+          label: '简历'
         }, {
           value: 'blog',
           label: '博客'
