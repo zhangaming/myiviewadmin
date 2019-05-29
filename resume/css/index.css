@@ -556,7 +556,8 @@ a {
       border: 2px solid rgba(51, 51, 51, 0.8);
       background: #fff; }
       .demo .flex-wrap .flex-item img {
-        width: 100%; }
+        width: 100%;
+        height: 100%; }
       .demo .flex-wrap .flex-item .detail {
         display: flex;
         flex-wrap: wrap;
