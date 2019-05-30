@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+//在1200px下
 @media (max-width: 1200px) {
 
   // 关于我
@@ -23,6 +24,7 @@
   }
 }
 
+//在992px下
 @media (max-width: 992px) {
 
   // 作品展示
@@ -36,6 +38,7 @@
   }
 }
 
+//在768px下
 @media (max-width: 768px) {
   .show-box {
     width: 90%;
@@ -156,6 +159,14 @@
       .flex-item {
         width: 48%;
         margin: 0 1% 10px;
+
+        .front-rotate {
+          transform: rotateY(-180deg);
+        }
+
+        .back-rotate {
+          transform: rotateY(0);
+        }
       }
     }
   }
@@ -336,6 +347,27 @@
 
       a {
         display: none;
+      }
+    }
+  }
+}
+
+//除768px外
+@media (min-width: 768px) {
+
+  //前端技能
+  .skill {
+    .flex-wrap {
+      .flex-item {
+        &:hover {
+          .front {
+            transform: rotateY(-180deg);
+          }
+
+          .back {
+            transform: rotateY(0);
+          }
+        }
       }
     }
   }

@@ -503,10 +503,6 @@ a {
         background: rgba(57, 60, 62, 0.8);
         transition: 1s;
         backface-visibility: hidden; }
-      .skill .flex-wrap .flex-item:hover .front {
-        transform: rotateY(-180deg); }
-      .skill .flex-wrap .flex-item:hover .back {
-        transform: rotateY(0); }
       .skill .flex-wrap .flex-item .front {
         display: flex;
         flex-wrap: wrap;
@@ -808,6 +804,7 @@ a {
     left: 0;
     z-index: -1;
     background: url(../images/bg-4.jpg) no-repeat center center;
+    background-size: cover;
     background-attachment: fixed;
     opacity: .5; }
   .message-board .message-commit .input-box {
@@ -828,6 +825,7 @@ a {
       display: flex;
       flex: 1;
       font-size: 14px;
+      color: #fff;
       font-family: "微软雅黑"; }
   .message-board .message-commit .message-box {
     border: 1px solid #000;
@@ -843,9 +841,9 @@ a {
       overflow-x: hidden;
       overflow-y: auto;
       border: 0;
-      font-size: 12px;
+      font-size: 14px;
       font-family: "微软雅黑";
-      color: #868686;
+      color: #fff;
       resize: none;
       line-height: normal;
       text-align: left; }

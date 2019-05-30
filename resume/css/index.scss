@@ -638,16 +638,6 @@ a {
         backface-visibility: hidden;
       }
 
-      &:hover {
-        .front {
-          transform: rotateY(-180deg);
-        }
-
-        .back {
-          transform: rotateY(0);
-        }
-      }
-
       .front {
         display: flex;
         flex-wrap: wrap;
@@ -1077,6 +1067,7 @@ a {
     left: 0;
     z-index: -1;
     background: url(../images/bg-4.jpg) no-repeat center center;
+    background-size: cover;
     background-attachment: fixed;
     opacity: .5;
   }
@@ -1101,6 +1092,7 @@ a {
         display: flex;
         flex: 1;
         font-size: 14px;
+        color: #fff;
         font-family: "微软雅黑";
       }
     }
@@ -1120,9 +1112,9 @@ a {
         overflow-x: hidden;
         overflow-y: auto;
         border: 0;
-        font-size: 12px;
+        font-size: 14px;
         font-family: "微软雅黑";
-        color: #868686;
+        color: #fff;
         resize: none;
         line-height: normal;
         text-align: left;
