@@ -26,6 +26,20 @@ setInterval(function () {
   $('.show-box').css('transform', 'scale(1.03) translate(' + (block.CX * 0.05) + 'px, ' + (block.CY * 0.05) + 'px) rotateX(' + (block.CY * 0.05) + 'deg) rotateY(' + (block.CX * 0.05) + 'deg)')
 }, 30);
 
+
+//背景随机
+$(function () {
+  var length = 4;
+  $(".bg-img li:nth-child(2)").show();
+  var index = 0;
+  setInterval(function () {
+    if (index > length) {
+      index = 0
+    }
+    $(".bg-img>li").eq(index).addClass("show").siblings().removeClass("show");
+    index++
+  }, 5000);
+});
 //联系方式
 var tips = $('.tips');
 $('.list li').hover(
@@ -64,13 +78,6 @@ if ($(window).width() < 768) {
       $(this).find(".back").removeClass('back-rotate')
     }, 5000)
   })
-  // :hover .front {
-  //   transform: rotateY(-180deg);
-  // }
-
-  // .skill .flex-wrap .flex-item:hover .back {
-  //   transform: rotateY(0);
-  // }
 }
 
 //GoTop

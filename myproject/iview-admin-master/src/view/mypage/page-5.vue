@@ -73,7 +73,7 @@ export default {
         },
         {
           value: 0,
-          label: '测试'
+          label: '七牛云'
         },
         {
           value: 1,

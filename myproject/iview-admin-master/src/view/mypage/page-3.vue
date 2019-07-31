@@ -101,7 +101,7 @@ export default {
           label: '全部'
         },
         {
-          value: 'rusume',
+          value: 'resume',
           label: '简历'
         }, {
           value: 'blog',

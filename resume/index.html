@@ -6,15 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <meta name="keywords" content="web前端个人简历,web前端,阿明简历,前端个人博客,前端工程师">
+  <meta name="keywords" content="web前端个人简历,web前端,阿明简历,前端个人博客,前端工程师,张复明">
   <meta name="description" content="阿明web前端个人简历，路漫漫其修远兮。">
-  <meta name="author" content="张复明,zhangaming">
-  <title>WEB前端个人简历</title>
+  <meta name="author" content="张复明,zhangaming,阿明">
+  <title>阿明's Resume</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/iconfont/iconfont.css">
-  <link rel="stylesheet" href="css/wowslider.css">
   <link rel="stylesheet" href="css/Animate.min.css">
   <link rel="stylesheet" href="css/my-animate.css">
   <link rel="stylesheet" href="css/index.css">
@@ -40,28 +39,25 @@
         <div class="circleLight"></div>
       </div>
     </div>
-    <div id="wowslider-container">
-      <div class="ws_images">
-        <ul>
-          <li><img src="images/slider/1.jpg" id="wows1_0" /></li>
-          <li><img src="images/slider/2.jpg" id="wows1_1" /></li>
-          <li><img src="images/slider/3.jpg" id="wows1_2" /></li>
-          <li><img src="images/slider/4.jpg" id="wows1_3" /></li>
-          <li><img src="images/slider/5.jpg" id="wows1_4" /></li>
-          <li><img src="images/slider/6.jpg" id="wows1_5" /></li>
-        </ul>
-      </div>
+    <div class="section">
+      <ul class="bg-img">
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class="show"></li>
+      </ul>
     </div>
   </div>
   <!-- 导航 -->
   <nav class="nav">
     <div class="navmove"></div>
     <div class="logo fl">
-      前端工程师简历
+      阿明's Resume
     </div>
     <div class="ident fl">
       <p>Resume</p>
-      <p>个人简历</p>
+      <p>阿明の简历</p>
     </div>
     <div class="menu-btn fr">
       <i class="iconfont icon-menu"></i>
@@ -277,6 +273,24 @@
             <i class="iconfont icon-link"></i>
           </a>
         </div>
+        <div class="flex-item">
+          <a href="https://zhangaming.github.io/svg/smile-faces/">
+            <img src="images/demo/smlie.png" alt="blog">
+          </a>
+          <a href="https://zhangaming.github.io/svg/smile-faces/" class="detail" target="_blank">
+            <h5>笑脸果冻</h5>
+            <i class="iconfont icon-link"></i>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="https://zhangaming.github.io/css/3d-index/">
+            <img src="images/demo/3d2.png" alt="blog">
+          </a>
+          <a href="https://zhangaming.github.io/css/3d-index/" class="detail" target="_blank">
+            <h5>h5 3d效果</h5>
+            <i class="iconfont icon-link"></i>
+          </a>
+        </div>
       </div>
       <div class="more">
         <p>更多作品 , 待更新 . . .</p>
@@ -299,19 +313,10 @@
           <div class="timeline-content">
             <p class="title">启航软件</p>
             <p class="post">&lt;前端工程师&gt;</p>
-            <p class="desc">负责官网页面制作。pc端商城项目 和移动端点餐系统 使用layui做后台管理系统</p>
+            <p class="desc">项目：一、移动端点餐系统，主要使用H5实现微信点餐系统；二、主要使用layui框架 农产品种养殖系统；三、使用jq+bootstrap 实现PC端B2C商城 ；四、使用
+              vue+vue-router+vuex+axios+scss等 实现泰肯星球 移动端嵌入页面，配合节日 出各种小活动游戏等；五、使用vue+elememt 实现泰肯币管理系统，包括了 权限管理
+              人员管理等模块；六、使用vue+iview实现公司人员管理系统</p>
             <p class="time">2017年<em>2月</em></p>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-dots">
-            <i class="iconfont icon-foot"></i>
-          </div>
-          <div class="timeline-content">
-            <p class="title">泰肯星球</p>
-            <p class="post">&lt;前端工程师&gt;</p>
-            <p class="desc">负责官网，使用vue做区块链游戏项目实现app 微信公众号上线, 使用iview 和element 分别做了两个后台管理系统 。期间配合各种节日做小游戏 例如老虎机</p>
-            <p class="time">2018年<em>2月</em></p>
           </div>
         </li>
         <li>
@@ -321,8 +326,9 @@
           <div class="timeline-content">
             <p class="title">北京护航科技有限公司</p>
             <p class="post">&lt;前端工程师&gt;</p>
-            <p class="desc">实现电缆 地图管理系统 实现图形的增删改查 提供底层组件 配合后台实现客户需求</p>
-            <p class="time">2018年<em>9月</em></p>
+            <p class="desc">技术栈包括 jq+vue+elementui+egis+layui统一管网系统；项目主要是实现地图电缆管理系统，我主要负责是对数据的可视化，还有对地图图形的绘制
+              其中包括图形绘画方式的封装 对管道截面的绘画实现以及模板的实现。其他功能便是配合后台对数据进行管理</p>
+            <p class="time">2018年<em>5月</em></p>
           </div>
         </li>
         <li>
@@ -450,22 +456,9 @@
 		<li>刷新</li>
 	</ul> -->
   <script src="js/jquery-1.11.3.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/wowslider.js"></script>
-  <script src="js/wowslider-script.js"></script>
   <!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
   <script src="js/NavMove.js"></script>
   <script src="js/index.js"></script>
-  <script>
-    var wow = new WOW({
-      boxClass: 'animated',
-      animateClass: 'animated',
-      offset: 0,
-      mobile: true,
-      live: false
-    });
-    wow.init();
-  </script>
 </body>
 
 </html>
