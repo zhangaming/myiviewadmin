@@ -16,7 +16,7 @@
         </Col>
         <Col :span="8">
         <i-input v-model="imgurl"
-                 style="width:200px"
+                 style="width:300px"
                  placeholder="请输入图片来源"></i-input>
         </Col>
         <Col :span="8">
@@ -78,7 +78,7 @@ export default {
         },
         {
           value: 0,
-          label: '测试'
+          label: '七牛云'
         },
         {
           value: 1,
@@ -100,7 +100,7 @@ export default {
         { title: '来源',
           key: 'type',
           render: (h, params) => {
-            return h('div', params.row.type === 0 ? '测试' : params.row.type === 1 ? '百度云盘' : 'github')
+            return h('div', params.row.type === 0 ? '七牛云' : params.row.type === 1 ? '百度云盘' : 'github')
           } },
         { title: '图片路径',
           key: 'img',

@@ -74,6 +74,10 @@ export default {
         {
           value: 'test',
           label: '测试'
+        },
+        {
+          value: 'git',
+          label: 'git'
         }
       ],
       vueList: [

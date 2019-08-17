@@ -42,7 +42,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
-import url from '@/api/myapi.js'
+import URL from '@/api/myapi.js'
 export default {
   name: 'page_6',
   data () {
@@ -89,6 +89,17 @@ export default {
   created () {
     this.getskill()
   },
+  watch: {
+    data1 (newVal) {
+      if (newVal.length === 0) {
+        this.current--
+        if (this.current === 0) {
+          this.current = 1
+        }
+        this.getskill()
+      }
+    }
+  },
   mounted () {
 
   },
@@ -99,7 +110,7 @@ export default {
       let data = qs.stringify({
         id: params._id
       })
-      axios.post(url.removeSkill, data).then(res => {
+      axios.post(URL.removeSkill, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -118,7 +129,7 @@ export default {
       let data = qs.stringify({
         skill: this.value
       })
-      axios.post(url.submitSkill, data).then(res => {
+      axios.post(URL.submitSkill, data).then(res => {
         this.$Notice.success({
           title: res.data.message
         })
@@ -130,14 +141,9 @@ export default {
         page: this.current,
         pageNum: this.pageSize
       })
-      axios.post(url.getSkill, data).then(res => {
+      axios.post(URL.getSkill, data).then(res => {
         this.total = res.data.data.count
         this.data1 = res.data.data.rows
-      })
-      axios.get(url.ip).then(res => {
-        this.$Notice.success({
-          title: res.data.message
-        })
       })
     }
   }

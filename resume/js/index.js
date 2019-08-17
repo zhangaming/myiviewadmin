@@ -26,6 +26,20 @@ setInterval(function () {
   $('.show-box').css('transform', 'scale(1.03) translate(' + (block.CX * 0.05) + 'px, ' + (block.CY * 0.05) + 'px) rotateX(' + (block.CY * 0.05) + 'deg) rotateY(' + (block.CX * 0.05) + 'deg)')
 }, 30);
 
+
+//背景随机
+$(function () {
+  var length = 4;
+  $(".bg-img li:nth-child(2)").show();
+  var index = 0;
+  setInterval(function () {
+    if (index > length) {
+      index = 0
+    }
+    $(".bg-img>li").eq(index).addClass("show").siblings().removeClass("show");
+    index++
+  }, 5000);
+});
 //联系方式
 var tips = $('.tips');
 $('.list li').hover(
@@ -54,6 +68,16 @@ if ($(window).width() < 768) {
   $('.menu li').click(function () {
     $('.menu').slideUp(300);
   });
+  $('.skill .flex-wrap .flex-item').on("touchstart", function () {
+    $(this).find(".front").addClass('front-rotate')
+    $(this).find(".back").addClass('back-rotate')
+    $(this).siblings().find(".front").removeClass('front-rotate')
+    $(this).siblings().find(".back").removeClass('back-rotate')
+    setTimeout(() => {
+      $(this).find(".front").removeClass('front-rotate')
+      $(this).find(".back").removeClass('back-rotate')
+    }, 5000)
+  })
 }
 
 //GoTop
@@ -243,9 +267,12 @@ function commitmessage() {
 function getmessage() {
   var url = 'http://182.61.48.129/api/getMessage';
   let data = {
-    type: '',
+    type: 'resume',
     page: pageNum,
     pageNum: 10
+  }
+  if ($("#lastmessage .desc").text() == '没有更多了') {
+    return
   }
   console.log(pageNum)
   $.ajax({

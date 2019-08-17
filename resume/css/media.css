@@ -81,6 +81,10 @@
     .skill .flex-wrap .flex-item {
       width: 48%;
       margin: 0 1% 10px; }
+      .skill .flex-wrap .flex-item .front-rotate {
+        transform: rotateY(-180deg); }
+      .skill .flex-wrap .flex-item .back-rotate {
+        transform: rotateY(0); }
 
   .demo .flex-wrap {
     padding-bottom: 30px; }
@@ -167,5 +171,10 @@
     font-size: 12px; }
     footer p a {
       display: none; } }
+@media (min-width: 768px) {
+  .skill .flex-wrap .flex-item:hover .front {
+    transform: rotateY(-180deg); }
+  .skill .flex-wrap .flex-item:hover .back {
+    transform: rotateY(0); } }
 
 /*# sourceMappingURL=media.css.map */

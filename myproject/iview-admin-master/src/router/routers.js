@@ -32,8 +32,8 @@ export default [{
   redirect: '/home',
   component: Main,
   meta: {
-    hideInMenu: true,
-    notCache: true
+    hideInMenu: true
+    // notCache: true
   },
   children: [{
     path: '/home',
@@ -47,34 +47,34 @@ export default [{
     component: () => import('@/view/single-page/home')
   }]
 },
-  // {
-  //   path: '',
-  //   name: 'doc',
-  //   meta: {
-  //     title: '文档',
-  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
-  //     icon: 'ios-book'
-  //   }
-  // },
-  // {
-  //   path: '/join',
-  //   name: 'join',
-  //   component: Main,
-  //   meta: {
-  //     hideInBread: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'join_page',
-  //       name: 'join_page',
-  //       meta: {
-  //         icon: '_qq',
-  //         title: 'QQ群'
-  //       },
-  //       component: () => import('@/view/join-page.vue')
-  //     }
-  //   ]
-  // },
+{
+  path: '',
+  name: 'doc',
+  meta: {
+    access: ['super_admin'],
+    title: '文档',
+    href: 'https://lison16.github.io/iview-admin-doc/#/',
+    icon: 'ios-book'
+  }
+},
+{
+  path: '/join',
+  name: 'join',
+  component: Main,
+  meta: {
+    access: ['super_admin'],
+    hideInBread: true
+  },
+  children: [{
+    path: 'join_page',
+    name: 'join_page',
+    meta: {
+      icon: '_qq',
+      title: 'QQ群'
+    },
+    component: () => import('@/view/join-page.vue')
+  }]
+},
 {
   path: '/message',
   name: 'message',
@@ -97,6 +97,7 @@ export default [{
   path: '/components',
   name: 'components',
   meta: {
+    access: ['admin'],
     icon: 'logo-buffer',
     title: '组件'
   },
@@ -211,39 +212,40 @@ export default [{
   }
   ]
 },
-  // {
-  //   path: '/update',
-  //   name: 'update',
-  //   meta: {
-  //     icon: 'md-cloud-upload',
-  //     title: '数据上传'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'update_table_page',
-  //       name: 'update_table_page',
-  //       meta: {
-  //         icon: 'ios-document',
-  //         title: '上传Csv'
-  //       },
-  //       component: () => import('@/view/update/update-table.vue')
-  //     },
-  //     {
-  //       path: 'update_paste_page',
-  //       name: 'update_paste_page',
-  //       meta: {
-  //         icon: 'md-clipboard',
-  //         title: '粘贴表格数据'
-  //       },
-  //       component: () => import('@/view/update/update-paste.vue')
-  //     }
-  //   ]
-  // },
+{
+  path: '/update',
+  name: 'update',
+  meta: {
+    access: ['super_admin'],
+    icon: 'md-cloud-upload',
+    title: '数据上传'
+  },
+  component: Main,
+  children: [{
+    path: 'update_table_page',
+    name: 'update_table_page',
+    meta: {
+      icon: 'ios-document',
+      title: '上传Csv'
+    },
+    component: () => import('@/view/update/update-table.vue')
+  },
+  {
+    path: 'update_paste_page',
+    name: 'update_paste_page',
+    meta: {
+      icon: 'md-clipboard',
+      title: '粘贴表格数据'
+    },
+    component: () => import('@/view/update/update-paste.vue')
+  }
+  ]
+},
 {
   path: '/excel',
   name: 'excel',
   meta: {
+    access: ['super_admin'],
     icon: 'ios-stats',
     title: 'EXCEL导入导出'
   },
@@ -272,6 +274,7 @@ export default [{
   path: '/tools_methods',
   name: 'tools_methods',
   meta: {
+    access: ['super_admin'],
     hideInBread: true
   },
   component: Main,
@@ -290,6 +293,7 @@ export default [{
   path: '/i18n',
   name: 'i18n',
   meta: {
+    access: ['super_admin'],
     hideInBread: true
   },
   component: Main,
@@ -307,6 +311,7 @@ export default [{
   path: '/error_store',
   name: 'error_store',
   meta: {
+    access: ['super_admin'],
     hideInBread: true
   },
   component: Main,
@@ -324,6 +329,7 @@ export default [{
   path: '/error_logger',
   name: 'error_logger',
   meta: {
+    access: ['super_admin'],
     hideInBread: true,
     hideInMenu: true
   },
@@ -342,6 +348,7 @@ export default [{
   path: '/directive',
   name: 'directive',
   meta: {
+    access: ['super_admin'],
     hideInBread: true
   },
   component: Main,
@@ -359,6 +366,7 @@ export default [{
   path: '/multilevel',
   name: 'multilevel',
   meta: {
+    access: ['admin'],
     icon: 'md-menu',
     title: '多级菜单'
   },
@@ -417,6 +425,7 @@ export default [{
   path: '/argu',
   name: 'argu',
   meta: {
+    access: ['super_admin'],
     hideInMenu: true
   },
   component: Main,
@@ -447,6 +456,7 @@ export default [{
   path: '/401',
   name: 'error_401',
   meta: {
+    access: ['admin'],
     hideInMenu: true
   },
   component: () => import('@/view/error-page/401.vue')
@@ -455,6 +465,7 @@ export default [{
   path: '/500',
   name: 'error_500',
   meta: {
+    access: ['super_admin'],
     hideInMenu: true
   },
   component: () => import('@/view/error-page/500.vue')
@@ -472,6 +483,7 @@ export default [{
   path: '/mypage',
   name: 'mypage',
   meta: {
+    access: ['zhangfuming'],
     icon: 'md-menu',
     title: '我的项目'
   },
@@ -489,7 +501,6 @@ export default [{
     path: 'page_2',
     name: 'page_2',
     meta: {
-      access: ['super_admin'],
       icon: 'md-funnel',
       showAlways: true,
       title: 'page-2'

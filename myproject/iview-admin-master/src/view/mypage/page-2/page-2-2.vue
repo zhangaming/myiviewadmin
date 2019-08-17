@@ -101,6 +101,10 @@ export default {
         {
           value: 'test',
           label: '测试'
+        },
+        {
+          value: 'git',
+          label: 'git'
         }
       ],
       vueList: [
@@ -335,10 +339,16 @@ pre {
 .ivu-select-dropdown {
   z-index: 10000;
 }
+.html_show img {
+  width: 100%;
+}
 </style>
 
 <style lang='less' scoped>
 .html_show {
   padding: 0 10px;
+  img {
+    width: 100%;
+  }
 }
 </style>
