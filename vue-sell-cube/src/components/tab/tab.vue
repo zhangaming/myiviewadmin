@@ -17,14 +17,11 @@
                   @change="onChange"
                   :options="slideOptions">
 
-        <cube-slide-item>
-          <goods></goods>
-        </cube-slide-item>
-        <cube-slide-item>
-          <ratings></ratings>
-        </cube-slide-item>
-        <cube-slide-item>
-          <seller></seller>
+        <cube-slide-item v-for="(tab,index) in tabs"
+                         :key="index">
+          <component :is="tab.component"
+                     :data="tab.data"
+                     ref="conponent"></component>
         </cube-slide-item>
       </cube-slide>
     </div>
@@ -32,21 +29,23 @@
 </template>
 
 <script>
-import Goods from 'components/goods/goods'
-import Ratings from 'components/ratings/ratings'
-import Seller from 'components/seller/seller'
 export default {
   name: 'tab',
+  props: {
+    tabs: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    initialIndex: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
-      index: 0,
-      tabs: [{
-        label: '商品'
-      }, {
-        label: '评价'
-      }, {
-        label: '商家'
-      }],
+      index: this.initialIndex,
       slideOptions: {
         listenScroll: true,
         probeType: 3,
@@ -67,13 +66,15 @@ export default {
     }
   },
   components: {
-    Goods,
-    Ratings,
-    Seller
+  },
+  mounted () {
+    this.onChange(this.index)
   },
   methods: {
     onChange (current) {
       this.index = current
+      const conponent = this.$refs.conponent[current]
+      conponent.fetch && conponent.fetch()
     },
     onScroll (pos) {
       const tabBarWidth = this.$refs.tabBar.$el.clientWidth // 组件的dom $el
