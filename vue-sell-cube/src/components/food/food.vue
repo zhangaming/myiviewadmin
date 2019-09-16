@@ -3,7 +3,8 @@
               @after-leave="afterLeave">
     <div class="food"
          v-show="visible">
-      <cube-scroll ref="scroll">
+      <cube-scroll :data="computedRatings"
+                   ref="scroll">
         <div class="food-content">
           <div class="image-header">
             <img :src="food.image">
