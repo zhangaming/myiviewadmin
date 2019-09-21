@@ -14,6 +14,7 @@
     "good-storage": "^1.1.0",
     "moment": "^2.24.0",
     "query-string": "^6.8.3",
+    "ts-axios-new": "^0.1.5",
     "vue": "^2.6.10"
   },
   "devDependencies": {

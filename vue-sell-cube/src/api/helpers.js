@@ -1,20 +1,25 @@
-import axios from 'axios'
+import axios from 'ts-axios-new'
+
+const urlMap = {
+  development: '/',
+  // production: 'http://ustbhuangyi.com/sell/'
+  production: 'http://localhost:8900/'
+}
+const baseUrl = urlMap[process.env.NODE_ENV]
 const ERR_OK = 0
 
 export function get(url) {
-  return function (params) {
-    return axios.get(url, {
+  return function (params = {}) {
+    return axios.get(baseUrl + url, {
       params
     }).then((res) => {
       const {
-        error,
+        errno,
         data
       } = res.data
-      if (error === ERR_OK) {
+      if (errno === ERR_OK) {
         return data
       }
-    }).catch(() => {
-
-    })
+    }).catch((e) => {})
   }
 }
